@@ -14,6 +14,7 @@ public class PlayingState implements GameState {
     @Override
     public void initialize() {
         player = new PlayerActor(new Rectangle(50, 50), Color.MAGENTA);
+        actors = new ArrayList<>();
         actors.add(player);
     }
 
