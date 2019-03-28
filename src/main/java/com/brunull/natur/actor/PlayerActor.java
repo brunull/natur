@@ -7,15 +7,12 @@ public class PlayerActor extends GlowingActor {
     private int y;
 
     public PlayerActor(Rectangle shape, Color color) {
-
         super(shape, color);
-
         y = 0;
     }
 
     @Override
     public void update() {
-
         int dy = (int)(Math.sin(Math.toRadians(y)) * 1.1);
         y++;
 

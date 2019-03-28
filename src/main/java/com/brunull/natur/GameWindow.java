@@ -15,10 +15,8 @@ public class GameWindow extends JFrame implements Runnable {
     private BufferedImage backBuffer;
 
     private boolean isRunning;
-    private double fps;
 
     public GameWindow(String title, int width, int height) {
-
         super(title);
 
         setResizable(false);
@@ -27,7 +25,6 @@ public class GameWindow extends JFrame implements Runnable {
 
     @Override
     public void run() {
-
         initialize();
 
         double frameCap = 1.0 / 60.0;
@@ -39,12 +36,11 @@ public class GameWindow extends JFrame implements Runnable {
         double unprocessedTime = 0;
         double frameTime = 0;
 
-        fps = 0;
-        double frames = 0;
+        int fps = 0;
+        int frames = 0;
 
         isRunning = true;
         while (isRunning) {
-
             firstTime = System.nanoTime() / 1000000000.0;
             elapsedTime = firstTime - lastTime;
             lastTime = firstTime;
@@ -87,7 +83,6 @@ public class GameWindow extends JFrame implements Runnable {
     }
 
     protected void initialize() {
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         canvas = new Canvas();
@@ -109,17 +104,16 @@ public class GameWindow extends JFrame implements Runnable {
     }
 
     protected void update() {
-        gameStateManager.peekState().update();
+        gameStateManager.getCurrentState().update();
     }
 
     protected void render() {
-
         Graphics g = canvas.getGraphics();
         Graphics2D bbg = (Graphics2D)backBuffer.getGraphics();
 
         clear(Color.BLACK);
 
-        gameStateManager.peekState().render(bbg);
+        gameStateManager.getCurrentState().render(bbg);
 
         g.drawImage(backBuffer, 0, 0, this);
     }

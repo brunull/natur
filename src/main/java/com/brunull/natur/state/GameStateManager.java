@@ -19,7 +19,7 @@ public class GameStateManager {
         gameStates.pop();
     }
 
-    public GameState peekState() {
+    public GameState getCurrentState() {
         return gameStates.peek();
     }
 }
