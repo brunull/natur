@@ -27,7 +27,7 @@ public class PlayingState implements GameState {
 
     @Override
     public void render(Graphics2D g) {
-        //g.setColor(player.getGlowColor());
-        //g.drawRect(getWidth() / 2 - (player.getWidth() / 2), getHeight() / 2 - player.getHeight(), player.getWidth(), player.getHeight());
+        g.setColor(Color.YELLOW);
+        g.drawString("This is the playing State", 5, 15);
     }
 }

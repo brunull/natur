@@ -1,5 +1,6 @@
 package com.brunull.natur;
 
+import com.brunull.natur.input.Keyboard;
 import com.brunull.natur.state.GameStateManager;
 import com.brunull.natur.state.PlayingState;
 
@@ -10,6 +11,7 @@ import java.awt.image.BufferedImage;
 public class GameWindow extends JFrame implements Runnable {
 
     private GameStateManager gameStateManager;
+    private Keyboard keyboard;
 
     private Canvas canvas;
     private BufferedImage backBuffer;
@@ -95,6 +97,10 @@ public class GameWindow extends JFrame implements Runnable {
             canvas.getHeight(),
             BufferedImage.TYPE_INT_RGB
         );
+
+        keyboard = new Keyboard();
+        canvas.addKeyListener(keyboard);
+        canvas.setFocusable(true);
 
         setVisible(true);
 
