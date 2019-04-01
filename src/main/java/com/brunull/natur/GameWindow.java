@@ -51,7 +51,6 @@ public class GameWindow extends JFrame implements Runnable {
             boolean shouldRender = false;
 
             while (unprocessedTime >= frameCap) {
-
                 unprocessedTime -= frameCap;
                 shouldRender = true;
 
