@@ -5,6 +5,12 @@ import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
 
+    private static boolean[] keys = new boolean[65536];
+
+    public static boolean isKeyDown(int key) {
+        return keys[key];
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -12,11 +18,11 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(KeyEvent.getKeyText(e.getKeyCode()));
+        keys[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        keys[e.getKeyCode()] = false;
     }
 }
