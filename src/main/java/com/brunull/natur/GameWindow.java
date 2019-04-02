@@ -20,7 +20,6 @@ public class GameWindow extends JFrame implements Runnable {
 
     public GameWindow(String title, int width, int height) {
         super(title);
-
         setResizable(false);
         setSize(width, height);
     }
@@ -105,7 +104,7 @@ public class GameWindow extends JFrame implements Runnable {
         setVisible(true);
 
         gameStateManager = new GameStateManager();
-        gameStateManager.pushState(new PlayingState());
+        gameStateManager.pushState(new PlayingState(gameStateManager));
     }
 
     protected void update() {

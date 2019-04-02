@@ -1,21 +1,26 @@
 package com.brunull.natur.state;
 
 import com.brunull.natur.actor.Actor;
-import com.brunull.natur.actor.PlayerActor;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PlayingState implements GameState {
+public class PlayingState extends GameState {
 
-    private PlayerActor player;
     private ArrayList<Actor> actors;
 
+    public PlayingState(GameStateManager gameStateManager) {
+        super(gameStateManager);
+    }
+
     @Override
-    public void initialize() {
-        player = new PlayerActor(new Rectangle(50, 50), Color.MAGENTA);
+    public void enter() {
         actors = new ArrayList<>();
-        actors.add(player);
+    }
+
+    @Override
+    public void exit() {
+
     }
 
     @Override
@@ -28,6 +33,6 @@ public class PlayingState implements GameState {
     @Override
     public void render(Graphics2D g) {
         g.setColor(Color.YELLOW);
-        g.drawString("This is the playing State", 5, 15);
+        g.drawString("This is the playing state.", 5, 15);
     }
 }

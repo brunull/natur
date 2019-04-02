@@ -12,10 +12,11 @@ public class GameStateManager {
 
     public void pushState(GameState state) {
         gameStates.push(state);
-        state.initialize();
+        state.enter();
     }
 
     public void popState() {
+        getCurrentState().exit();
         gameStates.pop();
     }
 
