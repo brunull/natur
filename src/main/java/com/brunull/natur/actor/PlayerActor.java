@@ -1,15 +1,29 @@
 package com.brunull.natur.actor;
 
+import com.brunull.natur.graphics.Sprite;
+
 public class PlayerActor extends Actor {
 
-    private InputComponent inputComponent;
+    private Sprite sprite;
 
     public PlayerActor() {
-        inputComponent = new InputComponent(this);
+
+    }
+
+    public PlayerActor(Sprite sprite) {
+        this.sprite = sprite;
     }
 
     @Override
     public void update() {
-        inputComponent.update();
+
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
     }
 }

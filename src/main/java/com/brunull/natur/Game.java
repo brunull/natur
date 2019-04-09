@@ -1,5 +1,6 @@
 package com.brunull.natur;
 
+import com.brunull.natur.graphics.Renderer;
 import com.brunull.natur.input.Keyboard;
 import com.brunull.natur.state.GameStateManager;
 import com.brunull.natur.state.PlayingState;
@@ -8,20 +9,40 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GameWindow extends JFrame implements Runnable {
+public class Game extends JPanel implements Runnable {
+
+    private Renderer renderer;
+
+    private AssetManager assetManager;
 
     private GameStateManager gameStateManager;
     private Keyboard keyboard;
 
-    private Canvas canvas;
     private BufferedImage backBuffer;
 
     private boolean isRunning;
 
-    public GameWindow(String title, int width, int height) {
-        super(title);
-        setResizable(false);
-        setSize(width, height);
+    public Game() {
+
+    }
+
+    public static void main(String[] args) {
+        JFrame window = new JFrame("Natur");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setLayout(new BorderLayout());
+        window.setResizable(false);
+
+        Game game = new Game();
+        game.setMinimumSize(new Dimension(800, 600));
+        game.setMaximumSize(new Dimension(800, 600));
+        game.setPreferredSize(new Dimension(800, 600));
+        game.setSize(800, 600);
+
+        window.add(game);
+        window.pack();
+        window.setVisible(true);
+
+        game.run();
     }
 
     @Override
@@ -82,37 +103,32 @@ public class GameWindow extends JFrame implements Runnable {
         }
     }
 
-    protected void initialize() {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        canvas = new Canvas();
-        canvas.setSize(getSize());
-        add(canvas);
-
-        pack();
+    private void initialize() {
 
         backBuffer = new BufferedImage(
-            canvas.getWidth(),
-            canvas.getHeight(),
+            getWidth(),
+            getHeight(),
             BufferedImage.TYPE_INT_RGB
         );
 
         keyboard = new Keyboard();
-        canvas.addKeyListener(keyboard);
-        canvas.setFocusable(true);
+        addKeyListener(keyboard);
+        setFocusable(true);
 
-        setVisible(true);
+        renderer = new Renderer();
 
-        gameStateManager = new GameStateManager();
+        assetManager = new AssetManager();
+
+        gameStateManager = new GameStateManager(this);
         gameStateManager.pushState(new PlayingState(gameStateManager));
     }
 
-    protected void update() {
+    private void update() {
         gameStateManager.getCurrentState().update();
     }
 
-    protected void render() {
-        Graphics g = canvas.getGraphics();
+    private void render() {
+        Graphics g = getGraphics();
         Graphics2D bbg = (Graphics2D)backBuffer.getGraphics();
 
         clear(Color.BLACK);
@@ -126,5 +142,13 @@ public class GameWindow extends JFrame implements Runnable {
         Graphics bbg = backBuffer.getGraphics();
         bbg.setColor(clearColor);
         bbg.fillRect(0,0, getWidth(), getHeight());
+    }
+
+    public Renderer getRenderer() {
+        return renderer;
+    }
+
+    public AssetManager getAssetManager() {
+        return assetManager;
     }
 }

@@ -37,9 +37,12 @@ public class PlayingState extends GameState {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(Color.YELLOW);
+        g.setColor(Color.WHITE);
         g.drawString("This is the playing state.", 5, 15);
         g.drawString("Player X: " + player.getX(), 5, 35);
         g.drawString("Player Y: " + player.getY(), 5, 55);
+
+//        Renderer renderer = gameStateManager.getGame().getRenderer();
+//        renderer.drawSprite(g, player.getSprite());
     }
 }
