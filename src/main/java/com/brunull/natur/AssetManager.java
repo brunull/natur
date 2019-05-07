@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class AssetManager {
-    public BufferedImage loadSpriteSheet(String name) throws IOException {
-        BufferedImage spriteSheet = ImageIO.read(AssetManager.class.getResource(name));
-        return spriteSheet;
+    public BufferedImage loadImage(String name) throws IOException {
+        BufferedImage image = ImageIO.read(AssetManager.class.getResource(name));
+        return image;
     }
 }
