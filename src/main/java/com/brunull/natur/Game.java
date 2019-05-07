@@ -3,7 +3,7 @@ package com.brunull.natur;
 import com.brunull.natur.graphics.Renderer;
 import com.brunull.natur.input.Keyboard;
 import com.brunull.natur.state.GameStateManager;
-import com.brunull.natur.state.PlayingState;
+import com.brunull.natur.state.MainMenuState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 
 public class Game extends JPanel implements Runnable {
 
+	private JFrame window;
+	
     private Renderer renderer;
 
     private AssetManager assetManager;
@@ -23,25 +25,23 @@ public class Game extends JPanel implements Runnable {
     private boolean isRunning;
 
     public Game() {
-
-    }
-
-    public static void main(String[] args) {
-        JFrame window = new JFrame("Natur");
+        window = new JFrame("Natur");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         window.setResizable(false);
+        
+        setMinimumSize(new Dimension(800, 600));
+        setMaximumSize(new Dimension(800, 600));
+        setPreferredSize(new Dimension(800, 600));
+        setSize(800, 600);
 
-        Game game = new Game();
-        game.setMinimumSize(new Dimension(800, 600));
-        game.setMaximumSize(new Dimension(800, 600));
-        game.setPreferredSize(new Dimension(800, 600));
-        game.setSize(800, 600);
-
-        window.add(game);
+        window.add(this);
         window.pack();
         window.setVisible(true);
+    }
 
+    public static void main(String[] args) {
+        Game game = new Game();
         game.run();
     }
 
@@ -112,7 +112,7 @@ public class Game extends JPanel implements Runnable {
         );
 
         keyboard = new Keyboard();
-        addKeyListener(keyboard);
+        window.addKeyListener(keyboard);
         setFocusable(true);
 
         renderer = new Renderer();
@@ -120,7 +120,7 @@ public class Game extends JPanel implements Runnable {
         assetManager = new AssetManager();
 
         gameStateManager = new GameStateManager(this);
-        gameStateManager.pushState(new PlayingState(gameStateManager));
+        gameStateManager.pushState(new MainMenuState(gameStateManager));
     }
 
     private void update() {
@@ -150,5 +150,9 @@ public class Game extends JPanel implements Runnable {
 
     public AssetManager getAssetManager() {
         return assetManager;
+    }
+    
+    public JFrame getWindow() {
+    	return window;
     }
 }

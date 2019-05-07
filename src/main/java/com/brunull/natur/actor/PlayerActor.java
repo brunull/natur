@@ -1,6 +1,9 @@
 package com.brunull.natur.actor;
 
+import java.awt.event.KeyEvent;
+
 import com.brunull.natur.graphics.Sprite;
+import com.brunull.natur.input.Keyboard;
 
 public class PlayerActor extends Actor {
 
@@ -16,7 +19,13 @@ public class PlayerActor extends Actor {
 
     @Override
     public void update() {
-
+    	if (Keyboard.isKeyDown(KeyEvent.VK_UP)) {
+    		move(1, 0);
+    	}
+    	
+    	if (Keyboard.isKeyDown(KeyEvent.VK_DOWN)) {
+    		move(-1, 0);
+    	}
     }
 
     public Sprite getSprite() {
