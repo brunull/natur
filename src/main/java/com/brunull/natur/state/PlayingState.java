@@ -2,8 +2,10 @@ package com.brunull.natur.state;
 
 import com.brunull.natur.actor.Actor;
 import com.brunull.natur.actor.PlayerActor;
+import com.brunull.natur.input.Keyboard;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class PlayingState extends GameState {
@@ -23,7 +25,7 @@ public class PlayingState extends GameState {
 
     @Override
     public void exit() {
-
+    	gameStateManager.popState();
     }
 
     @Override
@@ -33,6 +35,10 @@ public class PlayingState extends GameState {
         }
 
         player.update();
+        
+        if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
+        	exit();
+        }
     }
 
     @Override

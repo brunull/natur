@@ -2,6 +2,7 @@ package com.brunull.natur.state;
 
 import com.brunull.natur.Game;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class GameStateManager {
@@ -11,20 +12,28 @@ public class GameStateManager {
 
     public GameStateManager(Game game) {
         gameStates = new Stack<>();
+        this.game = game;
     }
 
     public void pushState(GameState state) {
+    	if (getCurrentState() != null) {
+    		getCurrentState().exit();
+    	}
+    	
         gameStates.push(state);
         state.enter();
     }
 
     public void popState() {
-        getCurrentState().exit();
         gameStates.pop();
     }
 
     public GameState getCurrentState() {
-        return gameStates.peek();
+    	try {
+    		return gameStates.peek();
+    	} catch (EmptyStackException e) {
+    		return null;
+    	}
     }
 
     public Game getGame() {

@@ -90,6 +90,10 @@ public class Game extends JPanel implements Runnable {
                 frames++;
 
                 update();
+                
+                if (!isRunning) 
+                	return;
+                
                 render();
             }
             else {
@@ -124,6 +128,12 @@ public class Game extends JPanel implements Runnable {
     }
 
     private void update() {
+    	
+    	if (gameStateManager.getCurrentState() == null) {
+    		isRunning = false;
+    		return;
+    	}
+    	
         gameStateManager.getCurrentState().update();
     }
 
