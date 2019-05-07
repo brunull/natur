@@ -112,7 +112,7 @@ public class Game extends JPanel implements Runnable {
         );
 
         keyboard = new Keyboard();
-        window.addKeyListener(keyboard);
+        addKeyListener(keyboard);
         setFocusable(true);
 
         renderer = new Renderer();

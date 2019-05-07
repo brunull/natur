@@ -26,8 +26,6 @@ public class MainMenuState extends GameState {
 	public void update() {
 		if (Keyboard.isKeyDown(KeyEvent.VK_ENTER)) {
 			gameStateManager.pushState(new PlayingState(gameStateManager));
-			
-			System.out.println("AAA");
 		}
 	}
 
