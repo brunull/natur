@@ -7,6 +7,7 @@ import com.brunull.natur.state.MainMenuState;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 public class Game extends JPanel implements Runnable {
@@ -131,6 +132,7 @@ public class Game extends JPanel implements Runnable {
     	
     	if (gameStateManager.getCurrentState() == null) {
     		isRunning = false;
+    		window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
     		return;
     	}
     	
@@ -143,7 +145,8 @@ public class Game extends JPanel implements Runnable {
 
         clear(Color.BLACK);
 
-        gameStateManager.getCurrentState().render(bbg);
+        if (gameStateManager.getCurrentState() != null)
+        	gameStateManager.getCurrentState().render(bbg);
 
         g.drawImage(backBuffer, 0, 0, this);
     }

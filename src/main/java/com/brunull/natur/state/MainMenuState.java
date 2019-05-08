@@ -38,6 +38,10 @@ public class MainMenuState extends GameState {
 		if (Keyboard.isKeyDown(KeyEvent.VK_ENTER)) {
 			gameStateManager.pushState(new PlayingState(gameStateManager));
 		}
+		
+		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
+			gameStateManager.popState();
+		}
 	}
 
 	@Override
