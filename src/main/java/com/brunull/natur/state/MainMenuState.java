@@ -70,12 +70,10 @@ public class MainMenuState extends GameState {
 		
 		if (background.getX() < -400) {
 			background.setX(game.getWidth() + 50);
-			//background2.move(game.getWidth() + 100, 0);
 		}
 		
 		if (background2.getX() < -400) {
 			background2.setX(game.getWidth() + 50);
-			//background2.move(game.getWidth() + 100, 0);
 		}
 	}
 
