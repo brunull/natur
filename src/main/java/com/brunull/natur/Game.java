@@ -168,4 +168,8 @@ public class Game extends JPanel implements Runnable {
     public JFrame getWindow() {
     	return window;
     }
+    
+    public Graphics getBackBuffer() {
+    	return backBuffer.getGraphics();
+    }
 }
