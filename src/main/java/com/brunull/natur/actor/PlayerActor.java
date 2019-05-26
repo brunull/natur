@@ -15,19 +15,11 @@ public class PlayerActor extends Actor {
     public PlayerActor(Game game, Sprite sprite) {
 		super(sprite);
 		this.game = game;
-		speed = 3;
+		speed = 5;
 	}
 	
     @Override
-    public void update() {
-    	/* if (Keyboard.isKeyDown(KeyEvent.VK_W)) {
-    		move(0, -1 * speed);
-    	}
-    	
-    	if (Keyboard.isKeyDown(KeyEvent.VK_S)) {
-    		move(0, 1 * speed);
-    	} */
-    	
+    public void update() {    	
     	if (Keyboard.isKeyDown(KeyEvent.VK_D)) {
     		move(1 * speed, 0);
     	}

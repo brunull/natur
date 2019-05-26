@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import com.brunull.natur.AssetManager;
 import com.brunull.natur.Game;
+import com.brunull.natur.audio.AudioPlayer;
 import com.brunull.natur.graphics.Sprite;
 import com.brunull.natur.input.Keyboard;
 import com.brunull.natur.math.Vector2;
@@ -48,6 +49,8 @@ public class MainMenuState extends GameState {
 		
 		background2.setX(400);
 		background2.setY(0);
+		
+		AudioPlayer.playSound("/maintheme.wav");
 	}
 
 	@Override
