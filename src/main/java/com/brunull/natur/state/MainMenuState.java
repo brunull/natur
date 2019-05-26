@@ -54,7 +54,7 @@ public class MainMenuState extends GameState {
 		//String r = copyText.getFont().toString();
 		//copyText.setPosition((int)(game.getWidth() - (r.getX() + r.getWidth())), game.getHeight() - 15);
 		
-		AudioPlayer.playSound("/maintheme.wav");
+		//AudioPlayer.playSound("/maintheme.wav");
 	}
 
 	@Override
@@ -76,11 +76,11 @@ public class MainMenuState extends GameState {
 		background2.move(-1, 0);
 		
 		if (background.getX() < -400) {
-			background.setX(game.getWidth() + 50);
+			background.setX(game.getWidth());
 		}
 		
 		if (background2.getX() < -400) {
-			background2.setX(game.getWidth() + 50);
+			background2.setX(game.getWidth());
 		}
 	}
 
