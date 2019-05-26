@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 
 import com.brunull.natur.AssetManager;
@@ -49,6 +50,9 @@ public class MainMenuState extends GameState {
 		
 		background2.setX(400);
 		background2.setY(0);
+		
+		//String r = copyText.getFont().toString();
+		//copyText.setPosition((int)(game.getWidth() - (r.getX() + r.getWidth())), game.getHeight() - 15);
 		
 		AudioPlayer.playSound("/maintheme.wav");
 	}

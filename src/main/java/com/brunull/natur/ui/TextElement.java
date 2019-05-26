@@ -27,6 +27,10 @@ public class TextElement {
 		g.drawString(text, position.getX(), position.getY());
 	}
 	
+	public void setPosition(int x, int y) {
+		position = new Vector2<Integer>(x, y);
+	}
+	
 	public void setColor(Color color) {
 		this.color = color;
 	}
@@ -35,4 +39,11 @@ public class TextElement {
 		return color;
 	}
 	
+	public String getText() {
+		return text;
+	}
+	
+	public Font getFont() {
+		return font;
+	}
 }
