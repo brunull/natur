@@ -2,7 +2,12 @@ package com.brunull.natur.ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 
 import com.brunull.natur.math.Vector2;
 
@@ -10,7 +15,6 @@ public class TextElement {
 	
 	private String text;
 	private Font font;
-	
 	private Vector2<Integer> position;
 	private Color color;
 
@@ -25,6 +29,11 @@ public class TextElement {
 		g.setColor(color);
 		g.setFont(font);
 		g.drawString(text, position.getX(), position.getY());
+	}
+	
+	public void drawBounds(Graphics2D g) {
+		g.setColor(Color.RED);
+		g.drawRect(position.getX(), position.getY(), (int)getBounds(g).getWidth(), (int)getBounds(g).getHeight());
 	}
 	
 	public void setPosition(int x, int y) {
@@ -45,5 +54,14 @@ public class TextElement {
 	
 	public Font getFont() {
 		return font;
+	}
+	
+	public Vector2<Integer> getPosition() {
+		return position;
+	}
+	
+	public Rectangle getBounds(Graphics2D g) {
+		Rectangle r = g.getFontMetrics().getStringBounds(text, ((Graphics)g)).getBounds();
+		return r;
 	}
 }

@@ -29,7 +29,7 @@ public class MainMenuState extends GameState {
 		game = gameStateManager.getGame();
 		
 		copyText = new TextElement("Natur v0.1",
-				Font.getFont("Arial"),
+				game.getBackBuffer().getFont(),
 				Color.WHITE,
 				new Vector2<Integer>(5, 15)
 		);
@@ -51,8 +51,11 @@ public class MainMenuState extends GameState {
 		background2.setX(400);
 		background2.setY(0);
 		
+		int paddingY = game.getWindow().getInsets().top;
+		
 		//String r = copyText.getFont().toString();
 		//copyText.setPosition((int)(game.getWidth() - (r.getX() + r.getWidth())), game.getHeight() - 15);
+		copyText.setPosition(game.getWidth() - (copyText.getPosition().getX() + copyText.getBounds((Graphics2D)game.getBackBuffer()).width), (game.getHeight() - paddingY) - copyText.getBounds((Graphics2D)game.getBackBuffer()).height);
 		
 		//AudioPlayer.playSound("/maintheme.wav");
 	}
@@ -92,6 +95,8 @@ public class MainMenuState extends GameState {
 		g.drawImage(background2.getImage(), background2.getX(), background2.getY(), null);
 		
         copyText.draw(g);
+        copyText.drawBounds(g);
+        
         g.drawImage(logoSprite.getImage(), (game.getWidth() / 2) - (logoSprite.getImage().getWidth(null) / 2), 50, null);
 	}
 
