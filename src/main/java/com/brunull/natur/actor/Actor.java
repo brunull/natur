@@ -1,12 +1,15 @@
 package com.brunull.natur.actor;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 import com.brunull.natur.graphics.Sprite;
 
 public abstract class Actor {
 
 	protected Sprite sprite;
+	
+	protected Rectangle bounds;
 	
     protected int x;
     protected int y;
@@ -48,5 +51,9 @@ public abstract class Actor {
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
+    }
+    
+    public Rectangle getBounds() {
+    	return bounds;
     }
 }

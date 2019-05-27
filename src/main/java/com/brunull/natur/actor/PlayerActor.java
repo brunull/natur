@@ -19,13 +19,13 @@ public class PlayerActor extends Actor {
 	}
 	
     @Override
-    public void update() {    	
-    	if (Keyboard.isKeyDown(KeyEvent.VK_D)) {
-    		move(1 * speed, 0);
+    public void update() {
+    	if (Keyboard.isKeyDown(KeyEvent.VK_A) || Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
+    		move(-1 * speed, 0);
     	}
     	
-    	if (Keyboard.isKeyDown(KeyEvent.VK_A)) {
-    		move(-1 * speed, 0);
+    	if (Keyboard.isKeyDown(KeyEvent.VK_D) || Keyboard.isKeyDown(KeyEvent.VK_RIGHT)) {
+    		move(1 * speed, 0);
     	}
     	
     	if (x < 0) {
