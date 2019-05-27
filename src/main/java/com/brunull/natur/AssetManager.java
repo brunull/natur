@@ -1,11 +1,11 @@
 package com.brunull.natur;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 import com.brunull.natur.graphics.Sprite;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class AssetManager {
     public static BufferedImage loadImage(String name) throws IOException {

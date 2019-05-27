@@ -1,14 +1,20 @@
 package com.brunull.natur;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import com.brunull.natur.graphics.Renderer;
 import com.brunull.natur.input.Keyboard;
 import com.brunull.natur.state.GameStateManager;
 import com.brunull.natur.state.MainMenuState;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
 
 public class Game extends JPanel implements Runnable {
 
