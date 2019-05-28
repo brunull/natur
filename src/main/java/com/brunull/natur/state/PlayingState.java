@@ -12,11 +12,15 @@ import java.util.ArrayList;
 
 public class PlayingState extends GameState {
 
+	private int score;
+	
     private ArrayList<Actor> actors;
     private PlayerActor player;
 
     public PlayingState(GameStateManager gameStateManager) {
         super(gameStateManager);
+        
+        score = 0;
     }
 
     @Override
@@ -52,11 +56,20 @@ public class PlayingState extends GameState {
 
     @Override
     public void render(Graphics2D g) {
+    	
+    	for (Actor actor : actors) {
+    		actor.draw(g);
+    	}
+    	
         player.draw(g);
         
         g.setColor(Color.WHITE);
         g.drawString("This is the playing state.", 5, 15);
         g.drawString("Player X: " + player.getX(), 5, 35);
         g.drawString("Player Y: " + player.getY(), 5, 55);
+    }
+    
+    public void spawnActor(Actor actor) {
+    	this.actors.add(actor);
     }
 }

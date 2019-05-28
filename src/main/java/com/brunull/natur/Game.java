@@ -167,6 +167,10 @@ public class Game extends JPanel implements Runnable {
         return renderer;
     }
 
+    public GameStateManager getGameStateManager() {
+    	return gameStateManager;
+    }
+    
     public AssetManager getAssetManager() {
         return assetManager;
     }

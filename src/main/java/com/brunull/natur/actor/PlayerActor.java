@@ -1,10 +1,13 @@
 package com.brunull.natur.actor;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
+import com.brunull.natur.AssetManager;
 import com.brunull.natur.Game;
 import com.brunull.natur.graphics.Sprite;
 import com.brunull.natur.input.Keyboard;
+import com.brunull.natur.state.PlayingState;
 
 public class PlayerActor extends Actor {
 
@@ -34,6 +37,20 @@ public class PlayerActor extends Actor {
     	
     	if (x + sprite.getImage().getWidth(null) > game.getWidth()) {
     		setX(game.getWidth() - sprite.getImage().getWidth(null));
+    	}
+    	
+    	if (Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
+    		PlayingState ps = (PlayingState)game.getGameStateManager().getCurrentState();
+    		try {
+    			Actor projectileActor = new ProjectileActor(AssetManager.loadSprite("/beam1.png"));
+    			projectileActor.setX(getX() + (this.getBounds().width / 2));
+    			projectileActor.setY(getY() + (this.getBounds().height / 2));
+    			
+				ps.spawnActor(projectileActor);
+				System.out.println("ACTOR SPAWNED");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
     	}
     }
 }
