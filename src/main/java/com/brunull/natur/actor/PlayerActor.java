@@ -47,7 +47,6 @@ public class PlayerActor extends Actor {
     			projectileActor.setY(getY() + (this.getBounds().height / 2));
     			
 				ps.spawnActor(projectileActor);
-				System.out.println("ACTOR SPAWNED");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
