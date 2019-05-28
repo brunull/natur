@@ -99,5 +99,4 @@ public class MainMenuState extends GameState {
         
         g.drawImage(logoSprite.getImage(), (game.getWidth() / 2) - (logoSprite.getImage().getWidth(null) / 2), 50, null);
 	}
-
 }

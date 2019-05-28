@@ -1,5 +1,6 @@
 package com.brunull.natur.actor;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -22,6 +23,14 @@ public abstract class Actor {
     
     public void draw(Graphics2D g) {
     	g.drawImage(sprite.getImage(), x, y, null);
+    	
+    	drawBoundsDebug(g);
+    }
+    
+    public void drawBoundsDebug(Graphics2D g) {
+    	g.setColor(Color.RED);
+    	Rectangle bounds = getBounds();
+    	g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
     public void move(int dx, int dy) {
@@ -54,6 +63,6 @@ public abstract class Actor {
     }
     
     public Rectangle getBounds() {
-    	return bounds;
+    	return new Rectangle(x, y, sprite.getImage().getWidth(null), sprite.getImage().getHeight(null));
     }
 }
