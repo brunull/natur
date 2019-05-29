@@ -30,15 +30,23 @@ public class PlayingState extends GameState {
 	private Sprite clouds2;
 	private Sprite junk;
 	private Sprite city;
+	
+	private Font font;
 
     public PlayingState(GameStateManager gameStateManager) {
         super(gameStateManager);
         
         actorKillList = new ArrayList<Actor>();
         
-        score = 0;
-        spawnTimer = 0;
-        crystalSpawnTimer = 0;
+        try {
+			font = AssetManager.loadFont("/VCR_OSD_MONO_1.001.ttf");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @Override
@@ -50,6 +58,10 @@ public class PlayingState extends GameState {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+        
+        score = 0;
+        spawnTimer = 0;
+        crystalSpawnTimer = 0;
         
         /* player.setX((game.getWidth() / 2) - player.getSprite().getImage().getWidth(null) / 2);
         player.setY(game.getHeight() - (player.getSprite().getImage().getHeight(null) + 45)); */
@@ -203,6 +215,8 @@ public class PlayingState extends GameState {
         // player.draw(g);
         
         g.setColor(Color.YELLOW);
+        g.setFont(font);
+        
         g.drawString("This is the playing state.", 5, 15);
         g.drawString("Player X: " + player.getX(), 5, 35);
         g.drawString("Player Y: " + player.getY(), 5, 55);
