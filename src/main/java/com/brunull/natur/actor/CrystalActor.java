@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.brunull.natur.AssetManager;
 import com.brunull.natur.Game;
+import com.brunull.natur.audio.AudioPlayer;
 import com.brunull.natur.graphics.Sprite;
 import com.brunull.natur.state.PlayingState;
 
@@ -47,6 +48,8 @@ public class CrystalActor extends Actor {
 					if (p.getHealth() < 100) {
 						p.damage(-10);
 					}
+					
+					AudioPlayer.playSound("/reward1.wav");
 					
 					ps.destroyActor(this);
 				}

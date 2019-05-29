@@ -56,6 +56,8 @@ public class PawnEnemyActor extends Actor {
 					PlayerActor p = (PlayerActor)a;
 					p.damage(15);
 					
+					AudioPlayer.playSound("/hit2.wav");
+					
 					ps.destroyActor(this);
 				}
 			}
