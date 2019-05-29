@@ -28,6 +28,7 @@ public class PawnEnemyActor extends Actor {
 		
 		if (x < 0) {
 			ps.destroyActor(this);
+			ps.addScore(-3);
 		}
 		
 		checkCollisions(ps);	
@@ -47,7 +48,7 @@ public class PawnEnemyActor extends Actor {
 				
 				if (a instanceof PlayerActor) {
 					PlayerActor p = (PlayerActor)a;
-					p.damage(2);
+					p.damage(15);
 					
 					ps.destroyActor(this);
 				}

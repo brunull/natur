@@ -203,4 +203,8 @@ public class PlayingState extends GameState {
     public ArrayList<Actor> getActors() {
     	return actors;
     }
+    
+    public PlayerActor getPlayerActor() {
+    	return player;
+    }
 }
