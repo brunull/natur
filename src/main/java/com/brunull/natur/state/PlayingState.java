@@ -102,6 +102,8 @@ public class PlayingState extends GameState {
         g.drawString("This is the playing state.", 5, 15);
         g.drawString("Player X: " + player.getX(), 5, 35);
         g.drawString("Player Y: " + player.getY(), 5, 55);
+        
+        g.drawString("Score: " + score, 5, 75);
     }
     
     public void spawnActor(Actor actor) {
