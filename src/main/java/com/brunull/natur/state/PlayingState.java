@@ -19,8 +19,9 @@ public class PlayingState extends GameState {
     private ArrayList<Actor> actors;
     private PlayerActor player;
     
-	private Sprite background;
-	private Sprite background2;
+	private Sprite clouds1;
+	private Sprite junk;
+	private Sprite city;
 
     public PlayingState(GameStateManager gameStateManager) {
         super(gameStateManager);
@@ -41,17 +42,21 @@ public class PlayingState extends GameState {
         player.setY(game.getHeight() - (player.getSprite().getImage().getHeight(null) + 45));
         
 		try {
-			background = AssetManager.loadSprite("/01bg1.png");
-			background2 = AssetManager.loadSprite("/01bg1.png");
+			city = AssetManager.loadSprite("/cityset1.png");
+			clouds1 = AssetManager.loadSprite("/cloudset1.png");
+			junk = AssetManager.loadSprite("/junkset1.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        
-		background.setX(0);
-		background.setY(0);
 		
-		background2.setX(0);
-		background2.setY(-background.getImage().getHeight(null));
+		clouds1.setX(25);
+		clouds1.setY(35);
+        
+		city.setX(0);
+		city.setY(game.getHeight() - city.getImage().getHeight(null));
+		
+		junk.setX(0);
+		junk.setY(game.getHeight() - junk.getImage().getHeight(null));
 		
         AudioPlayer.playSound("/01.wav");
     }
@@ -73,24 +78,26 @@ public class PlayingState extends GameState {
         	exit();
         }
         
-        background.move(0, 1);
-        background2.move(0, 1);
+		clouds1.move(-1, 0);
         
-		if (background.getY() > game.getHeight()) {
-			background.setY(background2.getY() + background2.getImage().getHeight(null));
-		}
+		junk.move(-2, 0);
 		
-		if (background2.getY() > game.getHeight()) {
-			background2.setY(-background2.getImage().getHeight(null));
+		if (junk.getX() + junk.getImage().getWidth(null) < 0) {
+			junk.setX((junk.getX() + junk.getImage().getWidth(null)) * 2);
 		}
     }
 
     @Override
     public void render(Graphics2D g) {
     	
-    	g.drawImage(background.getImage(), background.getX(), background.getY(), null);
-    	g.drawImage(background2.getImage(), background2.getX(), background2.getY(), null);
-    	g.drawImage(background2.getImage(), background2.getX(), background2.getY() - background2.getImage().getHeight(null), null);
+    	clear(new Color(0, 142, 201));
+    
+    	g.drawImage(clouds1.getImage(), clouds1.getX(), clouds1.getY(), null);
+    	
+    	g.drawImage(city.getImage(), city.getX(), city.getY(), null);
+    	
+    	g.drawImage(junk.getImage(), junk.getX(), junk.getY(), null);
+    	g.drawImage(junk.getImage(), junk.getX() + junk.getImage().getWidth(null), junk.getY(), null);
     	
     	for (Actor actor : actors) {
     		actor.draw(g);
