@@ -43,7 +43,10 @@ public class CrystalActor extends Actor {
 			if (a.getBounds().intersects(getBounds())) {				
 				if (a instanceof PlayerActor) {
 					PlayerActor p = (PlayerActor)a;
-					p.damage(-10);
+					
+					if (p.getHealth() < 100) {
+						p.damage(-10);
+					}
 					
 					ps.destroyActor(this);
 				}
