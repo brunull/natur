@@ -24,7 +24,7 @@ public abstract class Actor {
     public void draw(Graphics2D g) {
     	g.drawImage(sprite.getImage(), x, y, null);
     	
-    	drawBoundsDebug(g);
+    	//drawBoundsDebug(g);
     }
     
     public void drawBoundsDebug(Graphics2D g) {

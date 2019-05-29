@@ -123,7 +123,7 @@ public class PlayingState extends GameState {
 			junk.setX((junk.getX() + junk.getImage().getWidth(null)) * 2);
 		}
 		
-		if (spawnTimer > 250) {
+		if (spawnTimer > 25) {
 			try {
 				PawnEnemyActor pa = new PawnEnemyActor(game);
 				
