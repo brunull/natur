@@ -39,8 +39,11 @@ public class PlayingState extends GameState {
 			e.printStackTrace();
 		}
         
-        player.setX((game.getWidth() / 2) - player.getSprite().getImage().getWidth(null) / 2);
-        player.setY(game.getHeight() - (player.getSprite().getImage().getHeight(null) + 45));
+        /* player.setX((game.getWidth() / 2) - player.getSprite().getImage().getWidth(null) / 2);
+        player.setY(game.getHeight() - (player.getSprite().getImage().getHeight(null) + 45)); */
+        
+        player.setX(player.getBounds().width + 25);
+        player.setY((game.getHeight() / 2) - player.getSprite().getImage().getHeight(null) / 2);
         
 		try {
 			city = AssetManager.loadSprite("/cityset1.png");
