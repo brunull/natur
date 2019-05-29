@@ -66,7 +66,7 @@ public class PlayerActor extends Actor {
     		
     		PlayingState ps = (PlayingState)game.getGameStateManager().getCurrentState();
     		try {
-    			Actor projectileActor = new ProjectileActor(AssetManager.loadSprite("/beam1.png"));
+    			Actor projectileActor = new ProjectileActor(game, AssetManager.loadSprite("/beam1.png"));
     			projectileActor.setX(getX() + (this.getBounds().width / 2));
     			projectileActor.setY(getY() + (this.getBounds().height / 2));
     			

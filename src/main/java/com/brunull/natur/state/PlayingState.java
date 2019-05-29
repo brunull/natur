@@ -19,6 +19,8 @@ public class PlayingState extends GameState {
 	
 	private int score;
 	
+	private ArrayList<Actor> actorKillList;
+	
     private ArrayList<Actor> actors;
     private PlayerActor player;
     
@@ -29,6 +31,8 @@ public class PlayingState extends GameState {
 
     public PlayingState(GameStateManager gameStateManager) {
         super(gameStateManager);
+        
+        actorKillList = new ArrayList<Actor>();
         
         score = 0;
         spawnTimer = 0;
@@ -115,7 +119,7 @@ public class PlayingState extends GameState {
 		
 		if (spawnTimer > 250) {
 			try {
-				PawnEnemyActor pa = new PawnEnemyActor();
+				PawnEnemyActor pa = new PawnEnemyActor(game);
 				
 				pa.setX(game.getWidth());
 				pa.setY((int)(Math.random() * 500));
@@ -131,6 +135,15 @@ public class PlayingState extends GameState {
 		
 		spawnTimer++;
 		
+		if (actorKillList.size() > 0) {
+			for (Actor a : actorKillList) {
+				actors.remove(a);
+			}
+			
+			actorKillList.clear();
+		}
+		
+		System.out.println("Actor count: " + actors.size());
     }
 
     @Override
@@ -166,5 +179,9 @@ public class PlayingState extends GameState {
     
     public void spawnActor(Actor actor) {
     	this.actors.add(actor);
+    }
+    
+    public void destroyActor(Actor actor) {
+    	this.actorKillList.add(actor);
     }
 }
