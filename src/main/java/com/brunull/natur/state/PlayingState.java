@@ -120,16 +120,18 @@ public class PlayingState extends GameState {
     	g.drawImage(city.getImage(), city.getX(), city.getY(), null);
     	g.drawImage(city.getImage(), city.getX() + city.getImage().getWidth(null), city.getY(), null);
     	
+    	for (Actor actor : actors) {
+    		actor.draw(g);
+    	}
+    	
+    	player.draw(g);
+    	
     	g.drawImage(junk.getImage(), junk.getX(), junk.getY(), null);
     	g.drawImage(junk.getImage(), junk.getX() + junk.getImage().getWidth(null), junk.getY(), null);
     	
     	g.drawImage(clouds1.getImage(), clouds1.getX(), clouds1.getY(), null);
     	
-    	for (Actor actor : actors) {
-    		actor.draw(g);
-    	}
-    	
-        player.draw(g);
+        // player.draw(g);
         
         g.setColor(Color.WHITE);
         g.drawString("This is the playing state.", 5, 15);
