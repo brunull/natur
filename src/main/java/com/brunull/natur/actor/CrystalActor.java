@@ -46,7 +46,11 @@ public class CrystalActor extends Actor {
 					PlayerActor p = (PlayerActor)a;
 					
 					if (p.getHealth() < 100) {
-						p.damage(-10);
+						if ((p.getHealth() + 25) > 100) {
+							p.setHealth(100);
+						} else {
+							p.damage(-25);
+						}
 					}
 					
 					AudioPlayer.playSound("/reward1.wav");

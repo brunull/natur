@@ -31,6 +31,8 @@ public class PawnEnemyActor extends Actor {
 			ps.destroyActor(this);
 			ps.addScore(-3);
 			ps.getPlayerActor().damage(5);
+			
+			AudioPlayer.playSound("/hit2.wav");
 		}
 		
 		checkCollisions(ps);	
