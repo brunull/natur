@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import com.brunull.natur.AssetManager;
 import com.brunull.natur.Game;
+import com.brunull.natur.audio.AudioPlayer;
 import com.brunull.natur.graphics.Sprite;
 import com.brunull.natur.input.Keyboard;
 import com.brunull.natur.state.PlayingState;
@@ -77,6 +78,8 @@ public class PlayerActor extends Actor {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+    		
+    		AudioPlayer.playSound("/laser1.wav");
     		
     		turretHeat = 5;
     	}

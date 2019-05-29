@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.brunull.natur.AssetManager;
 import com.brunull.natur.Game;
+import com.brunull.natur.audio.AudioPlayer;
 import com.brunull.natur.graphics.Sprite;
 import com.brunull.natur.state.PlayingState;
 
@@ -43,6 +44,9 @@ public class PawnEnemyActor extends Actor {
 			
 			if (a.getBounds().intersects(getBounds())) {
 				if (a instanceof ProjectileActor) {
+					
+					AudioPlayer.playSound("/hit1.wav");
+					
 					ps.destroyActor(a);
 					ps.destroyActor(this);
 					ps.addScore(2);
