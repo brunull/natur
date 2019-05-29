@@ -90,6 +90,7 @@ public class PlayingState extends GameState {
     	
     	g.drawImage(background.getImage(), background.getX(), background.getY(), null);
     	g.drawImage(background2.getImage(), background2.getX(), background2.getY(), null);
+    	g.drawImage(background2.getImage(), background2.getX(), background2.getY() + background2.getImage().getHeight(null), null);
     	
     	for (Actor actor : actors) {
     		actor.draw(g);

@@ -10,6 +10,6 @@ public class ProjectileActor extends Actor {
 
 	@Override
 	public void update() {
-		this.setY(getY() - 5);
+		this.setY(getY() - 7);
 	}
 }
