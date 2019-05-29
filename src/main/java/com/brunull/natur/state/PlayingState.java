@@ -20,6 +20,7 @@ public class PlayingState extends GameState {
     private PlayerActor player;
     
 	private Sprite background;
+	private Sprite background2;
 
     public PlayingState(GameStateManager gameStateManager) {
         super(gameStateManager);
@@ -41,10 +42,17 @@ public class PlayingState extends GameState {
         
 		try {
 			background = AssetManager.loadSprite("/01bg1.png");
+			background2 = AssetManager.loadSprite("/01bg1.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
         
+		background.setX(0);
+		background.setY(0);
+		
+		background2.setX(0);
+		background2.setY(background.getY() + background.getImage().getHeight(null));
+		
         AudioPlayer.playSound("/01.wav");
     }
 
@@ -64,12 +72,24 @@ public class PlayingState extends GameState {
         if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
         	exit();
         }
+        
+        background.move(0, -1);
+        background2.move(0, -1);
+        
+		if (background.getY() + background.getImage().getHeight(null) < 0) {
+			background.setY(background2.getY() + background2.getImage().getHeight(null));
+		}
+		
+		if (background2.getY() + background2.getImage().getHeight(null) < 0) {
+			background2.setY(0);
+		}
     }
 
     @Override
     public void render(Graphics2D g) {
     	
     	g.drawImage(background.getImage(), background.getX(), background.getY(), null);
+    	g.drawImage(background2.getImage(), background2.getX(), background2.getY(), null);
     	
     	for (Actor actor : actors) {
     		actor.draw(g);
