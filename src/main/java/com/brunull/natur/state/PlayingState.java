@@ -51,7 +51,7 @@ public class PlayingState extends GameState {
 		background.setY(0);
 		
 		background2.setX(0);
-		background2.setY(background.getY() + background.getImage().getHeight(null));
+		background2.setY(-background.getImage().getHeight(null));
 		
         AudioPlayer.playSound("/01.wav");
     }
@@ -73,15 +73,15 @@ public class PlayingState extends GameState {
         	exit();
         }
         
-        background.move(0, -1);
-        background2.move(0, -1);
+        background.move(0, 1);
+        background2.move(0, 1);
         
-		if (background.getY() + background.getImage().getHeight(null) < 0) {
+		if (background.getY() > game.getHeight()) {
 			background.setY(background2.getY() + background2.getImage().getHeight(null));
 		}
 		
-		if (background2.getY() + background2.getImage().getHeight(null) < 0) {
-			background2.setY(0);
+		if (background2.getY() > game.getHeight()) {
+			background2.setY(-background2.getImage().getHeight(null));
 		}
     }
 
@@ -90,7 +90,7 @@ public class PlayingState extends GameState {
     	
     	g.drawImage(background.getImage(), background.getX(), background.getY(), null);
     	g.drawImage(background2.getImage(), background2.getX(), background2.getY(), null);
-    	g.drawImage(background2.getImage(), background2.getX(), background2.getY() + background2.getImage().getHeight(null), null);
+    	g.drawImage(background2.getImage(), background2.getX(), background2.getY() - background2.getImage().getHeight(null), null);
     	
     	for (Actor actor : actors) {
     		actor.draw(g);
