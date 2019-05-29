@@ -2,6 +2,7 @@ package com.brunull.natur.state;
 
 import com.brunull.natur.AssetManager;
 import com.brunull.natur.actor.Actor;
+import com.brunull.natur.actor.CrystalActor;
 import com.brunull.natur.actor.PawnEnemyActor;
 import com.brunull.natur.actor.PlayerActor;
 import com.brunull.natur.audio.AudioPlayer;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class PlayingState extends GameState {
 
 	private int spawnTimer;
+	private int crystalSpawnTimer;
 	
 	private int score;
 	
@@ -36,6 +38,7 @@ public class PlayingState extends GameState {
         
         score = 0;
         spawnTimer = 0;
+        crystalSpawnTimer = 0;
     }
 
     @Override
@@ -123,7 +126,7 @@ public class PlayingState extends GameState {
 			junk.setX((junk.getX() + junk.getImage().getWidth(null)) * 2);
 		}
 		
-		if (spawnTimer > 25) {
+		if (spawnTimer > 30) {
 			try {
 				PawnEnemyActor pa = new PawnEnemyActor(game);
 				
@@ -138,6 +141,22 @@ public class PlayingState extends GameState {
 			spawnTimer = 0;
 		}
 		
+		if (crystalSpawnTimer > 400) {
+			try {
+				CrystalActor ca = new CrystalActor(game);
+				
+				ca.setX(game.getWidth());
+				ca.setY((int)(Math.random() * 500));
+				
+				spawnActor(ca);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			crystalSpawnTimer = 0;
+		}
+		
+		crystalSpawnTimer++;
 		spawnTimer++;
 		
 		if (actorKillList.size() > 0) {
@@ -179,7 +198,7 @@ public class PlayingState extends GameState {
     	
         // player.draw(g);
         
-        g.setColor(Color.WHITE);
+        g.setColor(Color.YELLOW);
         g.drawString("This is the playing state.", 5, 15);
         g.drawString("Player X: " + player.getX(), 5, 35);
         g.drawString("Player Y: " + player.getY(), 5, 55);
