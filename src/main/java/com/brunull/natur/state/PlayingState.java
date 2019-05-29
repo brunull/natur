@@ -79,8 +79,14 @@ public class PlayingState extends GameState {
         }
         
 		clouds1.move(-1, 0);
+		
+		city.move(-2, 0);
         
-		junk.move(-2, 0);
+		junk.move(-3, 0);
+		
+		if (city.getX() + city.getImage().getWidth(null) < 0) {
+			city.setX((city.getX() + city.getImage().getWidth(null)) * 2);
+		}
 		
 		if (junk.getX() + junk.getImage().getWidth(null) < 0) {
 			junk.setX((junk.getX() + junk.getImage().getWidth(null)) * 2);
@@ -95,6 +101,7 @@ public class PlayingState extends GameState {
     	g.drawImage(clouds1.getImage(), clouds1.getX(), clouds1.getY(), null);
     	
     	g.drawImage(city.getImage(), city.getX(), city.getY(), null);
+    	g.drawImage(city.getImage(), city.getX() + city.getImage().getWidth(null), city.getY(), null);
     	
     	g.drawImage(junk.getImage(), junk.getX(), junk.getY(), null);
     	g.drawImage(junk.getImage(), junk.getX() + junk.getImage().getWidth(null), junk.getY(), null);
