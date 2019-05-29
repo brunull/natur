@@ -2,6 +2,7 @@ package com.brunull.natur.state;
 
 import com.brunull.natur.AssetManager;
 import com.brunull.natur.actor.Actor;
+import com.brunull.natur.actor.PawnEnemyActor;
 import com.brunull.natur.actor.PlayerActor;
 import com.brunull.natur.audio.AudioPlayer;
 import com.brunull.natur.graphics.Sprite;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 
 public class PlayingState extends GameState {
 
+	private int spawnTimer;
+	
 	private int score;
 	
     private ArrayList<Actor> actors;
@@ -28,6 +31,7 @@ public class PlayingState extends GameState {
         super(gameStateManager);
         
         score = 0;
+        spawnTimer = 0;
     }
 
     @Override
@@ -108,6 +112,25 @@ public class PlayingState extends GameState {
 		if (junk.getX() + junk.getImage().getWidth(null) < 0) {
 			junk.setX((junk.getX() + junk.getImage().getWidth(null)) * 2);
 		}
+		
+		if (spawnTimer > 250) {
+			try {
+				PawnEnemyActor pa = new PawnEnemyActor();
+				
+				pa.setX(game.getWidth());
+				pa.setY((int)(Math.random() * 500));
+				
+				spawnActor(pa);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			spawnTimer = 0;
+		}
+		
+		spawnTimer++;
+		
     }
 
     @Override
