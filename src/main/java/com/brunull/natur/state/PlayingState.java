@@ -183,4 +183,8 @@ public class PlayingState extends GameState {
     public void destroyActor(Actor actor) {
     	this.actorKillList.add(actor);
     }
+    
+    public ArrayList<Actor> getActors() {
+    	return actors;
+    }
 }

@@ -24,9 +24,26 @@ public class PawnEnemyActor extends Actor {
 	public void update() {
 		move(-6, 0);
 		
+		PlayingState ps = (PlayingState)game.getGameStateManager().getCurrentState();
+		
 		if (x < 0) {
-			PlayingState ps = (PlayingState)game.getGameStateManager().getCurrentState();
 			ps.destroyActor(this);
+		}
+		
+		checkCollisions(ps);
+	}
+	
+	private void checkCollisions(PlayingState ps) {
+		for (Actor a : ps.getActors()) {
+			if (this == a) {
+				continue;
+			}
+			
+			if (a.getBounds().intersects(getBounds())) {
+				if (a instanceof ProjectileActor) {
+					ps.destroyActor(this);
+				}
+			}
 		}
 	}
 	
