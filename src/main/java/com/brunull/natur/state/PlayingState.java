@@ -126,7 +126,6 @@ public class PlayingState extends GameState {
 				
 				spawnActor(pa);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
