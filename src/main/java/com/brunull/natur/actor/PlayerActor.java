@@ -14,11 +14,13 @@ public class PlayerActor extends Actor {
 	private Game game;
 	
 	private int speed;
+	private int turretHeat;
 	
     public PlayerActor(Game game, Sprite sprite) {
 		super(sprite);
 		this.game = game;
 		speed = 5;
+		turretHeat = 0;
 	}
 	
     @Override
@@ -40,6 +42,12 @@ public class PlayerActor extends Actor {
     	}
     	
     	if (Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
+    		
+    		if (turretHeat != 0) {
+    			turretHeat--;
+    			return;
+    		}
+    		
     		PlayingState ps = (PlayingState)game.getGameStateManager().getCurrentState();
     		try {
     			Actor projectileActor = new ProjectileActor(AssetManager.loadSprite("/beam1.png"));
@@ -50,6 +58,8 @@ public class PlayerActor extends Actor {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+    		
+    		turretHeat = 5;
     	}
     }
 }
