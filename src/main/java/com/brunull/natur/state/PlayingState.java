@@ -20,6 +20,7 @@ public class PlayingState extends GameState {
     private PlayerActor player;
     
 	private Sprite clouds1;
+	private Sprite clouds2;
 	private Sprite junk;
 	private Sprite city;
 
@@ -44,13 +45,17 @@ public class PlayingState extends GameState {
 		try {
 			city = AssetManager.loadSprite("/cityset1.png");
 			clouds1 = AssetManager.loadSprite("/cloudset1.png");
+			clouds2 = AssetManager.loadSprite("/cloudset2.png");
 			junk = AssetManager.loadSprite("/junkset1.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		clouds1.setX(25);
-		clouds1.setY(35);
+		clouds1.setY(15);
+		
+		clouds2.setX(65);
+		clouds2.setY(35);
         
 		city.setX(0);
 		city.setY(game.getHeight() - city.getImage().getHeight(null));
@@ -78,11 +83,20 @@ public class PlayingState extends GameState {
         	exit();
         }
         
-		clouds1.move(-1, 0);
+		clouds1.move(-2, 0);
 		
+		clouds2.move(-1, 0);
 		city.move(-2, 0);
         
 		junk.move(-3, 0);
+		
+		if (clouds1.getX() + clouds1.getImage().getWidth(null) < 0) {
+			clouds1.setX(game.getWidth());
+		}
+		
+		if (clouds2.getX() + clouds2.getImage().getWidth(null) < 0) {
+			clouds2.setX(game.getWidth());
+		}
 		
 		if (city.getX() + city.getImage().getWidth(null) < 0) {
 			city.setX((city.getX() + city.getImage().getWidth(null)) * 2);
@@ -98,13 +112,15 @@ public class PlayingState extends GameState {
     	
     	clear(new Color(0, 142, 201));
     
-    	g.drawImage(clouds1.getImage(), clouds1.getX(), clouds1.getY(), null);
+    	g.drawImage(clouds2.getImage(), clouds2.getX(), clouds2.getY(), null);
     	
     	g.drawImage(city.getImage(), city.getX(), city.getY(), null);
     	g.drawImage(city.getImage(), city.getX() + city.getImage().getWidth(null), city.getY(), null);
     	
     	g.drawImage(junk.getImage(), junk.getX(), junk.getY(), null);
     	g.drawImage(junk.getImage(), junk.getX() + junk.getImage().getWidth(null), junk.getY(), null);
+    	
+    	g.drawImage(clouds1.getImage(), clouds1.getX(), clouds1.getY(), null);
     	
     	for (Actor actor : actors) {
     		actor.draw(g);
