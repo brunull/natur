@@ -30,7 +30,7 @@ public class PawnEnemyActor extends Actor {
 			ps.destroyActor(this);
 		}
 		
-		checkCollisions(ps);
+		checkCollisions(ps);	
 	}
 	
 	private void checkCollisions(PlayingState ps) {
@@ -41,6 +41,14 @@ public class PawnEnemyActor extends Actor {
 			
 			if (a.getBounds().intersects(getBounds())) {
 				if (a instanceof ProjectileActor) {
+					ps.destroyActor(this);
+					ps.addScore(2);
+				}
+				
+				if (a instanceof PlayerActor) {
+					PlayerActor p = (PlayerActor)a;
+					p.damage(2);
+					
 					ps.destroyActor(this);
 				}
 			}

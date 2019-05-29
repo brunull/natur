@@ -13,12 +13,15 @@ public class PlayerActor extends Actor {
 
 	private Game game;
 	
+	private int health;
+	
 	private int speed;
 	private int turretHeat;
 	
     public PlayerActor(Game game, Sprite sprite) {
 		super(sprite);
 		this.game = game;
+		health = 100;
 		speed = 5;
 		turretHeat = 0;
 	}
@@ -77,5 +80,13 @@ public class PlayerActor extends Actor {
     		
     		turretHeat = 5;
     	}
+    }
+    
+    public void damage(int amount) {
+    	health -= amount;
+    }
+    
+    public int getHealth() {
+    	return health;
     }
 }

@@ -43,6 +43,7 @@ public class PlayingState extends GameState {
         actors = new ArrayList<>();
         try {
 			player = new PlayerActor(game, AssetManager.loadSprite("/player.png"));
+			actors.add(player);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,6 +86,11 @@ public class PlayingState extends GameState {
     @Override
     public void update() {
         for (Actor actor : actors) {
+        	
+        	if (actor == player) {
+        		continue;
+        	}
+        	
             actor.update();
         }
 
@@ -156,6 +162,11 @@ public class PlayingState extends GameState {
     	g.drawImage(city.getImage(), city.getX() + city.getImage().getWidth(null), city.getY(), null);
     	
     	for (Actor actor : actors) {
+    		
+        	if (actor == player) {
+        		continue;
+        	}
+        	
     		actor.draw(g);
     	}
     	
@@ -174,6 +185,7 @@ public class PlayingState extends GameState {
         g.drawString("Player Y: " + player.getY(), 5, 55);
         
         g.drawString("Score: " + score, 5, 75);
+        g.drawString("Health: " + player.getHealth(), 5, 95);
     }
     
     public void spawnActor(Actor actor) {
@@ -182,6 +194,10 @@ public class PlayingState extends GameState {
     
     public void destroyActor(Actor actor) {
     	this.actorKillList.add(actor);
+    }
+    
+    public void addScore(int score) {
+    	this.score += score;
     }
     
     public ArrayList<Actor> getActors() {
