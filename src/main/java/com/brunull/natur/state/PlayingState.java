@@ -41,10 +41,8 @@ public class PlayingState extends GameState {
         try {
 			font = AssetManager.loadFont("/VCR_OSD_MONO_1.001.ttf");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FontFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
