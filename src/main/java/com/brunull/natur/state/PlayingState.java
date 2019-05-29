@@ -168,6 +168,10 @@ public class PlayingState extends GameState {
 		}
 		
 		System.out.println("Actor count: " + actors.size());
+		
+		if (player.getHealth() <= 0) {
+			enter();
+		}
     }
 
     @Override
