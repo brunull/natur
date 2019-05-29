@@ -25,13 +25,29 @@ public class PlayerActor extends Actor {
 	
     @Override
     public void update() {
-    	if (Keyboard.isKeyDown(KeyEvent.VK_A) || Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
+    	if (Keyboard.isKeyDown(KeyEvent.VK_W) || Keyboard.isKeyDown(KeyEvent.VK_UP)) {
+    		move(0, -1 * speed);
+    	}
+    	
+    	if (Keyboard.isKeyDown(KeyEvent.VK_S) || Keyboard.isKeyDown(KeyEvent.VK_DOWN)) {
+    		move(0, 1 * speed);
+    	}
+    	
+    	if (y < 0) {
+    		setY(0);
+    	}
+    	
+    	if (y + sprite.getImage().getHeight(null) > game.getHeight()) {
+    		setY(game.getHeight() - sprite.getImage().getHeight(null));
+    	}
+    	
+    	/* if (Keyboard.isKeyDown(KeyEvent.VK_A) || Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
     		move(-1 * speed, 0);
     	}
     	
     	if (Keyboard.isKeyDown(KeyEvent.VK_D) || Keyboard.isKeyDown(KeyEvent.VK_RIGHT)) {
     		move(1 * speed, 0);
-    	}
+    	} 
     	
     	if (x < 0) {
     		setX(0);
@@ -39,7 +55,7 @@ public class PlayerActor extends Actor {
     	
     	if (x + sprite.getImage().getWidth(null) > game.getWidth()) {
     		setX(game.getWidth() - sprite.getImage().getWidth(null));
-    	}
+    	} */
     	
     	if (Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
     		
