@@ -88,7 +88,8 @@ public class MainMenuState extends GameState {
 
 	@Override
 	public void exit() {
-		
+		AudioPlayer.stop();
+		System.out.println("CALLED");
 	}
 
 	@Override

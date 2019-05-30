@@ -48,7 +48,7 @@ public class PlayingState extends GameState {
     }
 
     @Override
-    public void enter() {
+    public void enter() { 	
         actors = new ArrayList<>();
         try {
 			player = new PlayerActor(game, AssetManager.loadSprite("/player.png"));
@@ -180,6 +180,7 @@ public class PlayingState extends GameState {
 		System.out.println("Actor count: " + actors.size());
 		
 		if (player.getHealth() <= 0) {
+		   	AudioPlayer.stop();
 			enter();
 		}
     }
