@@ -17,6 +17,8 @@ import com.brunull.natur.state.MainMenuState;
 
 public class Game extends JPanel implements Runnable {
 
+	private static final long serialVersionUID = 1L;
+
 	private JFrame window;
 	
     private AssetManager assetManager;

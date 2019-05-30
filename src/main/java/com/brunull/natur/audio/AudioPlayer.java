@@ -3,7 +3,6 @@ package com.brunull.natur.audio;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
 
 public class AudioPlayer {
 	

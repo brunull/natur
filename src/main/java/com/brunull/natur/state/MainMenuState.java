@@ -5,11 +5,9 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 
 import com.brunull.natur.AssetManager;
-import com.brunull.natur.Game;
 import com.brunull.natur.audio.AudioPlayer;
 import com.brunull.natur.graphics.Sprite;
 import com.brunull.natur.input.Keyboard;
