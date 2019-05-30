@@ -177,7 +177,7 @@ public class PlayingState extends GameState {
 			actorKillList.clear();
 		}
 		
-		System.out.println("Actor count: " + actors.size());
+		//System.out.println("Actor count: " + actors.size());
 		
 		if (player.getHealth() <= 0) {
 		   	AudioPlayer.stop();
