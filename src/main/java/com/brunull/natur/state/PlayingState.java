@@ -8,6 +8,8 @@ import com.brunull.natur.actor.PlayerActor;
 import com.brunull.natur.audio.AudioPlayer;
 import com.brunull.natur.graphics.Sprite;
 import com.brunull.natur.input.Keyboard;
+import com.brunull.natur.math.Vector2;
+import com.brunull.natur.ui.TextElement;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -31,7 +33,14 @@ public class PlayingState extends GameState {
 	private Sprite junk;
 	private Sprite city;
 	
+	private TextElement gameplayInfoText;
+	
 	private Font font;
+	private Font font2;
+	
+	private int levelStartTextTimer;
+	
+	private boolean shouldDisplayGameplayInfo;
 
     public PlayingState(GameStateManager gameStateManager) {
         super(gameStateManager);
@@ -40,11 +49,20 @@ public class PlayingState extends GameState {
         
         try {
 			font = AssetManager.loadFont("/VCR_OSD_MONO_1.001.ttf");
+			font2 = font.deriveFont(22.0f);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		}
+        
+        gameplayInfoText = new TextElement("A CIDADE ESTÁ SUJA",
+				font2,
+				Color.YELLOW,
+				new Vector2<Integer>(0, 0)
+		);
+        
+        shouldDisplayGameplayInfo = true;
     }
 
     @Override
@@ -87,6 +105,10 @@ public class PlayingState extends GameState {
 		
 		junk.setX(0);
 		junk.setY(game.getHeight() - junk.getImage().getHeight(null));
+		
+		gameplayInfoText.setPosition((game.getWidth() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
+		
+		levelStartTextTimer = 0;
 		
         AudioPlayer.playSound("/01.wav");
     }
@@ -166,6 +188,17 @@ public class PlayingState extends GameState {
 			crystalSpawnTimer = 0;
 		}
 		
+		if (levelStartTextTimer >= 180) {
+			gameplayInfoText.setText("DESTRUA O LIXO E SALVE A CIDADE!");
+			gameplayInfoText.setPosition((game.getWidth() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
+		
+	        if (levelStartTextTimer >= 360) {
+	        	shouldDisplayGameplayInfo = false;
+	        }
+		}
+		
+		levelStartTextTimer++;
+		
 		crystalSpawnTimer++;
 		spawnTimer++;
 		
@@ -222,6 +255,10 @@ public class PlayingState extends GameState {
         
         g.drawString("Score: " + score, 5, 75);
         g.drawString("Health: " + player.getHealth(), 5, 95);
+                
+        if (shouldDisplayGameplayInfo) {
+        	gameplayInfoText.drawShadowed(g);
+        }
     }
     
     public void spawnActor(Actor actor) {

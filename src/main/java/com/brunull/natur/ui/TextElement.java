@@ -42,6 +42,10 @@ public class TextElement {
 		g.drawRect(position.getX(), position.getY(), (int)getBounds(g).getWidth(), (int)getBounds(g).getHeight());
 	}
 	
+	public void setText(String text) {
+		this.text = text;
+	}
+	
 	public void setPosition(int x, int y) {
 		position = new Vector2<Integer>(x, y);
 	}

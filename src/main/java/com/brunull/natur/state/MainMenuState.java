@@ -86,7 +86,7 @@ public class MainMenuState extends GameState {
 		
 		//String r = copyText.getFont().toString();
 		//copyText.setPosition((int)(game.getWidth() - (r.getX() + r.getWidth())), game.getHeight() - 15);
-		infoText.setPosition(game.getWidth() - (infoText.getPosition().getX() + infoText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - (infoText.getBounds((Graphics2D)game.getBackBuffer()).height  * 2) - 15);
+		infoText.setPosition(game.getWidth() - (infoText.getPosition().getX() + infoText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - (infoText.getBounds((Graphics2D)game.getBackBuffer()).height  * 2) - 20);
 		creditsText.setPosition(game.getWidth() - (creditsText.getPosition().getX() + creditsText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - creditsText.getBounds((Graphics2D)game.getBackBuffer()).height - 15);
 		
 		pressToPlayText.setPosition((game.getWidth() / 2) - pressToPlayText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - pressToPlayText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
