@@ -24,6 +24,7 @@ public class PlayingState extends GameState {
 	private int crystalSpawnTimer;
 	
 	private int score;
+	private int bestScore;
 	
 	private ArrayList<Actor> actorKillList;
 	
@@ -39,6 +40,7 @@ public class PlayingState extends GameState {
 	
 	private TextElement playerHealthText;
 	private TextElement scoreText;
+	private TextElement bestScoreText;
 	
 	private Font font;
 	private Font font2;
@@ -78,6 +80,14 @@ public class PlayingState extends GameState {
 				Color.YELLOW,
 				new Vector2<Integer>(5, playerHealthText.getBounds((Graphics2D)game.getBackBuffer()).height + 10)
 		);
+        
+        bestScoreText = new TextElement("RECORDE: 0",
+				font,
+				Color.YELLOW,
+				new Vector2<Integer>(5, (scoreText.getPosition().getY() + scoreText.getBounds((Graphics2D)game.getBackBuffer()).height) + 5)
+		);
+        
+        bestScore = 0;
         
         shouldDisplayGameplayInfo = true;
         isFirstTry = true;
@@ -241,6 +251,9 @@ public class PlayingState extends GameState {
 			if (isFirstTry) {
 				isFirstTry = false;
 			}
+			
+			bestScore = score > bestScore ? score : bestScore;
+			bestScoreText.setText("RECORDE: " + bestScore);
 		   	
 			enter();
 		}
@@ -286,6 +299,7 @@ public class PlayingState extends GameState {
         
         playerHealthText.drawShadowed(g);
         scoreText.drawShadowed(g);
+        bestScoreText.drawShadowed(g);
         
         if (shouldDisplayGameplayInfo) {
         	gameplayInfoText.drawShadowed(g);
