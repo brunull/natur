@@ -27,6 +27,16 @@ public class TextElement {
 		g.drawString(text, position.getX(), position.getY());
 	}
 	
+	public void drawShadowed(Graphics2D g) {
+		g.setFont(font);
+		
+		g.setColor(Color.BLACK);
+		g.drawString(text, position.getX() + 1, position.getY() + 1);
+		
+		g.setColor(color);
+		g.drawString(text, position.getX(), position.getY());
+	}
+	
 	public void drawBounds(Graphics2D g) {
 		g.setColor(Color.RED);
 		g.drawRect(position.getX(), position.getY(), (int)getBounds(g).getWidth(), (int)getBounds(g).getHeight());

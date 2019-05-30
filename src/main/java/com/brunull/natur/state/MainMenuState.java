@@ -94,7 +94,7 @@ public class MainMenuState extends GameState {
 		g.drawImage(background.getImage(), background.getX(), background.getY(), null);
 		g.drawImage(background2.getImage(), background2.getX(), background2.getY(), null);
 		
-        copyText.draw(g);
+        copyText.drawShadowed(g);
         copyText.drawBounds(g);
         
         g.drawImage(logoSprite.getImage(), (game.getWidth() / 2) - (logoSprite.getImage().getWidth(null) / 2), 50, null);
