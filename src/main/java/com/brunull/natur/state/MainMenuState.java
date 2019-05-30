@@ -2,6 +2,7 @@ package com.brunull.natur.state;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
@@ -17,21 +18,31 @@ import com.brunull.natur.ui.TextElement;
 
 public class MainMenuState extends GameState {
 
-	private TextElement copyText;
+	private TextElement infoText;
 	private Sprite logoSprite;
 	
 	private Sprite background;
 	private Sprite background2;
 	
+	private Font font;
+	
 	public MainMenuState(GameStateManager gameStateManager) {
 		super(gameStateManager);
 		
+        try {
+			font = AssetManager.loadFont("/VCR_OSD_MONO_1.001.ttf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		}
+		
 		game = gameStateManager.getGame();
 		
-		copyText = new TextElement("Natur v0.1",
-				game.getBackBuffer().getFont(),
+		infoText = new TextElement("Natur ver. 1.0 - APS 3º Semestre CC",
+				font,
 				Color.WHITE,
-				new Vector2<Integer>(5, 15)
+				new Vector2<Integer>(0, 0)
 		);
 	}
 
@@ -51,11 +62,11 @@ public class MainMenuState extends GameState {
 		background2.setX(400);
 		background2.setY(0);
 		
-		int paddingY = game.getWindow().getInsets().top;
+		//int paddingY = game.getWindow().getInsets().top;
 		
 		//String r = copyText.getFont().toString();
 		//copyText.setPosition((int)(game.getWidth() - (r.getX() + r.getWidth())), game.getHeight() - 15);
-		copyText.setPosition(game.getWidth() - (copyText.getPosition().getX() + copyText.getBounds((Graphics2D)game.getBackBuffer()).width), (game.getHeight() - paddingY) - copyText.getBounds((Graphics2D)game.getBackBuffer()).height);
+		infoText.setPosition(game.getWidth() - (infoText.getPosition().getX() + infoText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - infoText.getBounds((Graphics2D)game.getBackBuffer()).height - 15);
 		
 		//AudioPlayer.playSound("/maintheme.wav");
 	}
@@ -94,8 +105,8 @@ public class MainMenuState extends GameState {
 		g.drawImage(background.getImage(), background.getX(), background.getY(), null);
 		g.drawImage(background2.getImage(), background2.getX(), background2.getY(), null);
 		
-        copyText.drawShadowed(g);
-        copyText.drawBounds(g);
+		infoText.drawShadowed(g);
+        //infoText.drawBounds(g);
         
         g.drawImage(logoSprite.getImage(), (game.getWidth() / 2) - (logoSprite.getImage().getWidth(null) / 2), 50, null);
 	}

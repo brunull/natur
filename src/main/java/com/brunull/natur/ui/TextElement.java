@@ -24,17 +24,17 @@ public class TextElement {
 	public void draw(Graphics2D g) {
 		g.setColor(color);
 		g.setFont(font);
-		g.drawString(text, position.getX(), position.getY());
+		g.drawString(text, position.getX(), position.getY() + this.getBounds(g).height);
 	}
 	
 	public void drawShadowed(Graphics2D g) {
 		g.setFont(font);
 		
 		g.setColor(Color.BLACK);
-		g.drawString(text, position.getX() + 1, position.getY() + 1);
+		g.drawString(text, position.getX() + 1, (position.getY() + this.getBounds(g).height) + 1);
 		
 		g.setColor(color);
-		g.drawString(text, position.getX(), position.getY());
+		g.drawString(text, position.getX(), position.getY() + this.getBounds(g).height);
 	}
 	
 	public void drawBounds(Graphics2D g) {
@@ -67,7 +67,8 @@ public class TextElement {
 	}
 	
 	public Rectangle getBounds(Graphics2D g) {
+		g.setFont(font);
 		Rectangle r = g.getFontMetrics().getStringBounds(text, ((Graphics)g)).getBounds();
-		return r;
+		return new Rectangle(position.getX(), position.getY(), r.width, r.height);
 	}
 }
