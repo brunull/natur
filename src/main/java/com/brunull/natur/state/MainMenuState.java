@@ -19,6 +19,8 @@ import com.brunull.natur.ui.TextElement;
 public class MainMenuState extends GameState {
 
 	private TextElement infoText;
+	private TextElement creditsText;
+	
 	private TextElement pressToPlayText;
 	
 	private Sprite logoSprite;
@@ -56,6 +58,12 @@ public class MainMenuState extends GameState {
 				Color.WHITE,
 				new Vector2<Integer>(0, 0)
 		);
+		
+		creditsText = new TextElement("Desenvolvido por Bruno, João e Honorran",
+				font,
+				Color.WHITE,
+				new Vector2<Integer>(0, 0)
+		);
 	}
 
 	@Override
@@ -78,7 +86,9 @@ public class MainMenuState extends GameState {
 		
 		//String r = copyText.getFont().toString();
 		//copyText.setPosition((int)(game.getWidth() - (r.getX() + r.getWidth())), game.getHeight() - 15);
-		infoText.setPosition(game.getWidth() - (infoText.getPosition().getX() + infoText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - infoText.getBounds((Graphics2D)game.getBackBuffer()).height - 15);		
+		infoText.setPosition(game.getWidth() - (infoText.getPosition().getX() + infoText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - (infoText.getBounds((Graphics2D)game.getBackBuffer()).height  * 2) - 15);
+		creditsText.setPosition(game.getWidth() - (creditsText.getPosition().getX() + creditsText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - creditsText.getBounds((Graphics2D)game.getBackBuffer()).height - 15);
+		
 		pressToPlayText.setPosition((game.getWidth() / 2) - pressToPlayText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - pressToPlayText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
 
 		blinkTicks = 30;
@@ -121,6 +131,7 @@ public class MainMenuState extends GameState {
 		g.drawImage(background2.getImage(), background2.getX(), background2.getY(), null);
 		
 		infoText.drawShadowed(g);
+		creditsText.drawShadowed(g);
         //infoText.drawBounds(g);
 		
 		if (blinkTicks >= 30) {
