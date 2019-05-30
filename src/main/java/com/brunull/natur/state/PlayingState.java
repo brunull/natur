@@ -38,7 +38,7 @@ public class PlayingState extends GameState {
 	private Font font;
 	private Font font2;
 	
-	private int levelStartTextTimer;
+	private int secondsElapsedSinceLastDisplay;
 	
 	private boolean shouldDisplayGameplayInfo;
 
@@ -108,7 +108,7 @@ public class PlayingState extends GameState {
 		
 		gameplayInfoText.setPosition((game.getWidth() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
 		
-		levelStartTextTimer = 0;
+		secondsElapsedSinceLastDisplay = 0;
 		
         AudioPlayer.playSound("/01.wav");
     }
@@ -188,17 +188,17 @@ public class PlayingState extends GameState {
 			crystalSpawnTimer = 0;
 		}
 		
-		if (levelStartTextTimer >= 180) {
+		if (secondsElapsedSinceLastDisplay >= 180) {
 			gameplayInfoText.setText("DESTRUA O LIXO E SALVE A CIDADE!");
 			gameplayInfoText.setPosition((game.getWidth() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
 		
-	        if (levelStartTextTimer >= 360) {
+	        if (secondsElapsedSinceLastDisplay >= 360) {
 	        	shouldDisplayGameplayInfo = false;
-	        	levelStartTextTimer = 0;
+	        	secondsElapsedSinceLastDisplay = 0;
 	        }
 		}
 		
-		levelStartTextTimer++;
+		secondsElapsedSinceLastDisplay++;
 		
 		crystalSpawnTimer++;
 		spawnTimer++;
@@ -216,13 +216,6 @@ public class PlayingState extends GameState {
 		if (player.getHealth() <= 0) {
 		   	AudioPlayer.stop();
 			enter();
-		}
-		
-		if (isMilestoneAchieved()) {
-			gameplayInfoText.setColor(Color.GREEN);
-			gameplayInfoText.setText(score + " PONTOS OBTIDOS!");
-			gameplayInfoText.setPosition((game.getWidth() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
-			shouldDisplayGameplayInfo = true;
 		}
     }
 
@@ -279,10 +272,6 @@ public class PlayingState extends GameState {
     
     public void addScore(int score) {
     	this.score += score;
-    }
-    
-    private boolean isMilestoneAchieved() {
-    	return (score % 100 == 0) && (score >= 100);
     }
     
     public ArrayList<Actor> getActors() {
