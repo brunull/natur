@@ -35,6 +35,9 @@ public class PlayingState extends GameState {
 	
 	private TextElement gameplayInfoText;
 	
+	private TextElement playerHealthText;
+	private TextElement scoreText;
+	
 	private Font font;
 	private Font font2;
 	
@@ -60,6 +63,18 @@ public class PlayingState extends GameState {
 				font2,
 				Color.YELLOW,
 				new Vector2<Integer>(0, 0)
+		);
+        
+        playerHealthText = new TextElement("SAÚDE: " + 0,
+				font,
+				Color.YELLOW,
+				new Vector2<Integer>(5, 5)
+		);
+        
+        scoreText = new TextElement("PONTOS: " + 0,
+				font,
+				Color.YELLOW,
+				new Vector2<Integer>(5, playerHealthText.getBounds((Graphics2D)game.getBackBuffer()).height + 10)
 		);
         
         shouldDisplayGameplayInfo = true;
@@ -213,6 +228,9 @@ public class PlayingState extends GameState {
 		
 		//System.out.println("Actor count: " + actors.size());
 		
+		playerHealthText.setText("SAÚDE: " + player.getHealth());
+		scoreText.setText("PONTOS: " + score);
+		
 		if (player.getHealth() <= 0) {
 		   	AudioPlayer.stop();
 			enter();
@@ -250,13 +268,16 @@ public class PlayingState extends GameState {
         g.setColor(Color.YELLOW);
         g.setFont(font);
         
-        g.drawString("This is the playing state.", 5, 15);
-        g.drawString("Player X: " + player.getX(), 5, 35);
-        g.drawString("Player Y: " + player.getY(), 5, 55);
+        //g.drawString("This is the playing state.", 5, 15);
+        //g.drawString("Player X: " + player.getX(), 5, 35);
+        //g.drawString("Player Y: " + player.getY(), 5, 55);
         
-        g.drawString("Score: " + score, 5, 75);
-        g.drawString("Health: " + player.getHealth(), 5, 95);
-                
+        //g.drawString("Score: " + score, 5, 75);
+        //g.drawString("Health: " + player.getHealth(), 5, 95);
+        
+        playerHealthText.drawShadowed(g);
+        scoreText.drawShadowed(g);
+        
         if (shouldDisplayGameplayInfo) {
         	gameplayInfoText.drawShadowed(g);
         }
