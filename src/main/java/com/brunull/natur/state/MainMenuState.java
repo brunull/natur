@@ -19,18 +19,24 @@ import com.brunull.natur.ui.TextElement;
 public class MainMenuState extends GameState {
 
 	private TextElement infoText;
+	private TextElement pressToPlayText;
+	
 	private Sprite logoSprite;
 	
 	private Sprite background;
 	private Sprite background2;
 	
 	private Font font;
+	private Font font2;
+	
+	private int blinkTicks;
 	
 	public MainMenuState(GameStateManager gameStateManager) {
 		super(gameStateManager);
 		
         try {
 			font = AssetManager.loadFont("/VCR_OSD_MONO_1.001.ttf");
+			font2 = font.deriveFont(22.0f);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (FontFormatException e) {
@@ -38,6 +44,12 @@ public class MainMenuState extends GameState {
 		}
 		
 		game = gameStateManager.getGame();
+		
+		pressToPlayText = new TextElement("> Pressione ENTER para jogar <",
+				font2,
+				Color.YELLOW,
+				new Vector2<Integer>(0, 0)
+		);
 		
 		infoText = new TextElement("Natur ver. 1.0 - APS 3º Semestre CC",
 				font,
@@ -66,9 +78,12 @@ public class MainMenuState extends GameState {
 		
 		//String r = copyText.getFont().toString();
 		//copyText.setPosition((int)(game.getWidth() - (r.getX() + r.getWidth())), game.getHeight() - 15);
-		infoText.setPosition(game.getWidth() - (infoText.getPosition().getX() + infoText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - infoText.getBounds((Graphics2D)game.getBackBuffer()).height - 15);
+		infoText.setPosition(game.getWidth() - (infoText.getPosition().getX() + infoText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - infoText.getBounds((Graphics2D)game.getBackBuffer()).height - 15);		
+		pressToPlayText.setPosition((game.getWidth() / 2) - pressToPlayText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - pressToPlayText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
+
+		blinkTicks = 30;
 		
-		//AudioPlayer.playSound("/maintheme.wav");
+		AudioPlayer.playSound("/maintheme.wav");
 	}
 
 	@Override
@@ -107,6 +122,16 @@ public class MainMenuState extends GameState {
 		
 		infoText.drawShadowed(g);
         //infoText.drawBounds(g);
+		
+		if (blinkTicks >= 30) {
+			pressToPlayText.drawShadowed(g);
+			
+			if (blinkTicks >= 60) {
+				blinkTicks = 0;
+			}
+		}
+		
+		blinkTicks++;
         
         g.drawImage(logoSprite.getImage(), (game.getWidth() / 2) - (logoSprite.getImage().getWidth(null) / 2), 50, null);
 	}

@@ -35,8 +35,12 @@ public class AssetManager {
     }
     
     public static Font loadFont(String name) throws IOException, FontFormatException {
+    	return loadFont(name, 16.0f);
+    }
+    
+    public static Font loadFont(String name, float size) throws IOException, FontFormatException {
     	InputStream is = AssetManager.class.getResourceAsStream(name);
     	Font original = Font.createFont(Font.TRUETYPE_FONT, is);
-    	return original.deriveFont(Font.PLAIN, 16f);
+    	return original.deriveFont(Font.PLAIN, size);
     }
 }
