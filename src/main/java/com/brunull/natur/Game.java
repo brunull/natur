@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.brunull.natur.graphics.Renderer;
 import com.brunull.natur.input.Keyboard;
 import com.brunull.natur.state.GameStateManager;
 import com.brunull.natur.state.MainMenuState;
@@ -20,8 +19,6 @@ public class Game extends JPanel implements Runnable {
 
 	private JFrame window;
 	
-    private Renderer renderer;
-
     private AssetManager assetManager;
 
     private GameStateManager gameStateManager;
@@ -126,8 +123,6 @@ public class Game extends JPanel implements Runnable {
         addKeyListener(keyboard);
         setFocusable(true);
 
-        renderer = new Renderer();
-
         assetManager = new AssetManager();
 
         gameStateManager = new GameStateManager(this);
@@ -161,10 +156,6 @@ public class Game extends JPanel implements Runnable {
         Graphics bbg = backBuffer.getGraphics();
         bbg.setColor(clearColor);
         bbg.fillRect(0,0, getWidth(), getHeight());
-    }
-
-    public Renderer getRenderer() {
-        return renderer;
     }
 
     public GameStateManager getGameStateManager() {
