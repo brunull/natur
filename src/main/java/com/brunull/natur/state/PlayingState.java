@@ -194,6 +194,7 @@ public class PlayingState extends GameState {
 		
 	        if (levelStartTextTimer >= 360) {
 	        	shouldDisplayGameplayInfo = false;
+	        	levelStartTextTimer = 0;
 	        }
 		}
 		
@@ -215,6 +216,13 @@ public class PlayingState extends GameState {
 		if (player.getHealth() <= 0) {
 		   	AudioPlayer.stop();
 			enter();
+		}
+		
+		if (isMilestoneAchieved()) {
+			gameplayInfoText.setColor(Color.GREEN);
+			gameplayInfoText.setText(score + " PONTOS OBTIDOS!");
+			gameplayInfoText.setPosition((game.getWidth() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
+			shouldDisplayGameplayInfo = true;
 		}
     }
 
@@ -271,6 +279,10 @@ public class PlayingState extends GameState {
     
     public void addScore(int score) {
     	this.score += score;
+    }
+    
+    private boolean isMilestoneAchieved() {
+    	return (score % 100 == 0) && (score >= 100);
     }
     
     public ArrayList<Actor> getActors() {
