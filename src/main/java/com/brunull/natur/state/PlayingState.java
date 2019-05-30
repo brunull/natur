@@ -59,19 +59,19 @@ public class PlayingState extends GameState {
 			e.printStackTrace();
 		}
         
-        gameplayInfoText = new TextElement("A CIDADE ESTÁ SUJA",
+        gameplayInfoText = new TextElement("A CIDADE ESTA SUJA",
 				font2,
 				Color.YELLOW,
 				new Vector2<Integer>(0, 0)
 		);
         
-        playerHealthText = new TextElement("SAÚDE: " + 0,
+        playerHealthText = new TextElement("SAUDE: 0%",
 				font,
 				Color.YELLOW,
 				new Vector2<Integer>(5, 5)
 		);
         
-        scoreText = new TextElement("PONTOS: " + 0,
+        scoreText = new TextElement("PONTOS: 0",
 				font,
 				Color.YELLOW,
 				new Vector2<Integer>(5, playerHealthText.getBounds((Graphics2D)game.getBackBuffer()).height + 10)
@@ -204,7 +204,7 @@ public class PlayingState extends GameState {
 		}
 		
 		if (secondsElapsedSinceLastDisplay >= 180) {
-			gameplayInfoText.setText("DESTRUA O LIXO E SALVE A CIDADE!");
+			gameplayInfoText.setText("DESTRUA O LIXO PARA AJUDA-LA!");
 			gameplayInfoText.setPosition((game.getWidth() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).width / 2, (game.getHeight() / 2) - gameplayInfoText.getBounds((Graphics2D)game.getBackBuffer()).height / 2);
 		
 	        if (secondsElapsedSinceLastDisplay >= 360) {
@@ -228,7 +228,7 @@ public class PlayingState extends GameState {
 		
 		//System.out.println("Actor count: " + actors.size());
 		
-		playerHealthText.setText("SAÚDE: " + player.getHealth());
+		playerHealthText.setText("SAUDE: " + player.getHealth() + "%");
 		scoreText.setText("PONTOS: " + score);
 		
 		if (player.getHealth() <= 0) {
