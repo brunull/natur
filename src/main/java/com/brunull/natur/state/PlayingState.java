@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class PlayingState extends GameState {
 
+	private boolean isFirstTry;
+	
 	private int spawnTimer;
 	private int crystalSpawnTimer;
 	
@@ -78,6 +80,7 @@ public class PlayingState extends GameState {
 		);
         
         shouldDisplayGameplayInfo = true;
+        isFirstTry = true;
     }
 
     @Override
@@ -125,7 +128,9 @@ public class PlayingState extends GameState {
 		
 		secondsElapsedSinceLastDisplay = 0;
 		
-        AudioPlayer.playSound("/01.wav");
+		if (isFirstTry) {
+			AudioPlayer.playSound("/01.wav", true);
+		}
     }
 
     @Override
@@ -231,8 +236,12 @@ public class PlayingState extends GameState {
 		playerHealthText.setText("SAUDE: " + player.getHealth() + "%");
 		scoreText.setText("PONTOS: " + score);
 		
-		if (player.getHealth() <= 0) {
-		   	AudioPlayer.stop();
+		if (player.getHealth() <= 0) {		   	
+			
+			if (isFirstTry) {
+				isFirstTry = false;
+			}
+		   	
 			enter();
 		}
     }

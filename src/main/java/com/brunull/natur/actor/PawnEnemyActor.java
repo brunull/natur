@@ -32,7 +32,7 @@ public class PawnEnemyActor extends Actor {
 			ps.addScore(-3);
 			ps.getPlayerActor().damage(5);
 			
-			AudioPlayer.playSound("/hit2.wav");
+			AudioPlayer.playSound("/hit2.wav", false);
 		}
 		
 		checkCollisions(ps);	
@@ -47,7 +47,7 @@ public class PawnEnemyActor extends Actor {
 			if (a.getBounds().intersects(getBounds())) {
 				if (a instanceof ProjectileActor) {
 					
-					AudioPlayer.playSound("/hit1.wav");
+					AudioPlayer.playSound("/hit1.wav", false);
 					
 					ps.destroyActor(a);
 					ps.destroyActor(this);
@@ -58,7 +58,7 @@ public class PawnEnemyActor extends Actor {
 					PlayerActor p = (PlayerActor)a;
 					p.damage(15);
 					
-					AudioPlayer.playSound("/hit2.wav");
+					AudioPlayer.playSound("/hit2.wav", false);
 					
 					ps.destroyActor(this);
 				}

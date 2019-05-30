@@ -79,7 +79,7 @@ public class PlayerActor extends Actor {
 				e.printStackTrace();
 			}
     		
-    		AudioPlayer.playSound("/laser1.wav");
+    		AudioPlayer.playSound("/laser1.wav", false);
     		
     		turretHeat = 5;
     	}

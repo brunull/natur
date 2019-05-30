@@ -93,7 +93,7 @@ public class MainMenuState extends GameState {
 
 		blinkTicks = 30;
 		
-		AudioPlayer.playSound("/maintheme.wav");
+		AudioPlayer.playSound("/maintheme.wav", true);
 	}
 
 	@Override

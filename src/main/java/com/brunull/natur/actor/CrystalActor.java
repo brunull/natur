@@ -53,7 +53,7 @@ public class CrystalActor extends Actor {
 						}
 					}
 					
-					AudioPlayer.playSound("/reward1.wav");
+					AudioPlayer.playSound("/reward1.wav", false);
 					
 					ps.destroyActor(this);
 				}
