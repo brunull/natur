@@ -11,9 +11,7 @@ import javax.sound.sampled.Clip;
 public class AudioPlayer {
 	
 	private static HashMap<String, Clip> cache = new HashMap<String, Clip>();
-	
-	//private static Clip clip;
-	
+		
 	public static void playSound(String path, boolean loop) {
 	      try {
 	    	  
@@ -32,8 +30,6 @@ public class AudioPlayer {
 		          clip.open(audioInputStream);
 		          
 		          cache.put(path, clip);
-		          
-		          System.out.println("DDDDDDDDD");
 	    	  }
 	    	   
     		  clip.setFramePosition(0);

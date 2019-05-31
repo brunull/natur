@@ -107,9 +107,6 @@ public class PlayingState extends GameState {
         spawnTimer = 0;
         crystalSpawnTimer = 0;
         
-        /* player.setX((game.getWidth() / 2) - player.getSprite().getImage().getWidth(null) / 2);
-        player.setY(game.getHeight() - (player.getSprite().getImage().getHeight(null) + 45)); */
-        
         player.setX(player.getBounds().width + 25);
         player.setY((game.getHeight() / 2) - player.getSprite().getImage().getHeight(null) / 2);
         
@@ -241,8 +238,6 @@ public class PlayingState extends GameState {
 			actorKillList.clear();
 		}
 		
-		//System.out.println("Actor count: " + actors.size());
-		
 		playerHealthText.setText("SAUDE: " + player.getHealth() + "%");
 		scoreText.setText("PONTOS: " + score);
 		
@@ -284,18 +279,9 @@ public class PlayingState extends GameState {
     	g.drawImage(junk.getImage(), junk.getX() + junk.getImage().getWidth(null), junk.getY(), null);
     	
     	g.drawImage(clouds1.getImage(), clouds1.getX(), clouds1.getY(), null);
-    	
-        // player.draw(g);
         
         g.setColor(Color.YELLOW);
         g.setFont(font);
-        
-        //g.drawString("This is the playing state.", 5, 15);
-        //g.drawString("Player X: " + player.getX(), 5, 35);
-        //g.drawString("Player Y: " + player.getY(), 5, 55);
-        
-        //g.drawString("Score: " + score, 5, 75);
-        //g.drawString("Health: " + player.getHealth(), 5, 95);
         
         playerHealthText.drawShadowed(g);
         scoreText.drawShadowed(g);

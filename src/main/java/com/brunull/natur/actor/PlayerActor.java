@@ -45,22 +45,6 @@ public class PlayerActor extends Actor {
     		setY(game.getHeight() - sprite.getImage().getHeight(null));
     	}
     	
-    	/* if (Keyboard.isKeyDown(KeyEvent.VK_A) || Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
-    		move(-1 * speed, 0);
-    	}
-    	
-    	if (Keyboard.isKeyDown(KeyEvent.VK_D) || Keyboard.isKeyDown(KeyEvent.VK_RIGHT)) {
-    		move(1 * speed, 0);
-    	} 
-    	
-    	if (x < 0) {
-    		setX(0);
-    	}
-    	
-    	if (x + sprite.getImage().getWidth(null) > game.getWidth()) {
-    		setX(game.getWidth() - sprite.getImage().getWidth(null));
-    	} */
-    	
     	if (Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
     		
     		if (turretHeat != 0) {

@@ -80,10 +80,6 @@ public class MainMenuState extends GameState {
 		background2.setX(400);
 		background2.setY(0);
 		
-		//int paddingY = game.getWindow().getInsets().top;
-		
-		//String r = copyText.getFont().toString();
-		//copyText.setPosition((int)(game.getWidth() - (r.getX() + r.getWidth())), game.getHeight() - 15);
 		infoText.setPosition(game.getWidth() - (infoText.getPosition().getX() + infoText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - (infoText.getBounds((Graphics2D)game.getBackBuffer()).height  * 2) - 20);
 		creditsText.setPosition(game.getWidth() - (creditsText.getPosition().getX() + creditsText.getBounds((Graphics2D)game.getBackBuffer()).width + 15), (game.getHeight()) - creditsText.getBounds((Graphics2D)game.getBackBuffer()).height - 15);
 		
@@ -130,7 +126,6 @@ public class MainMenuState extends GameState {
 		
 		infoText.drawShadowed(g);
 		creditsText.drawShadowed(g);
-        //infoText.drawBounds(g);
 		
 		if (blinkTicks >= 30) {
 			pressToPlayText.drawShadowed(g);
