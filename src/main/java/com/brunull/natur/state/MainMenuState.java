@@ -96,7 +96,7 @@ public class MainMenuState extends GameState {
 
 	@Override
 	public void exit() {
-		AudioPlayer.stop();
+		AudioPlayer.stop("/maintheme.wav");
 	}
 
 	@Override
